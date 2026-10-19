@@ -53,7 +53,7 @@ export const SignInPage = ({ product }) => {
   const featuredImage =
     product?.primaryImage ||
     product?.images?.[0]?.url ||
-    'https://images.unsplash.com/photo-1594787318286-3d835c1d207f?auto=format&fit=crop&w=800&q=80';
+    '/images/products/spray-monster-hero.jpg';
 
   const storeBenefits = [
     {

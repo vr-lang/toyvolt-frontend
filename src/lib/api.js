@@ -105,6 +105,39 @@ export const getErrorMessage = (error, fallback = 'Something went wrong. Please 
   return error.message || fallback;
 };
 
+export const VERIFIED_LOCAL_PRODUCT_IMAGES = [
+  {
+    url: '/images/products/spray-monster-hero.jpg',
+    publicId: 'spray_monster_hero',
+    isPrimary: true
+  },
+  {
+    url: '/images/products/spray-monster-angles.jpg',
+    publicId: 'spray_monster_angles',
+    isPrimary: false
+  },
+  {
+    url: '/images/products/spray-monster-features.jpg',
+    publicId: 'spray_monster_features',
+    isPrimary: false
+  },
+  {
+    url: '/images/products/spray-monster-dimensions.jpg',
+    publicId: 'spray_monster_dimensions',
+    isPrimary: false
+  },
+  {
+    url: '/images/products/spray-monster-box.jpg',
+    publicId: 'spray_monster_box',
+    isPrimary: false
+  },
+  {
+    url: '/images/products/spray-monster-remote.jpg',
+    publicId: 'spray_monster_remote',
+    isPrimary: false
+  }
+];
+
 /**
  * Normalize backend Product document so components have reliable accessors
  * whether price is accessed in integer paise or rupees.
@@ -142,11 +175,24 @@ export const normalizeProduct = (raw) => {
   const availableStock = typeof raw.availableStock === 'number' ? raw.availableStock : 0;
   const isInStock = typeof raw.isInStock === 'boolean' ? raw.isInStock : availableStock > 0;
 
-  const images = Array.isArray(raw.images)
+  let images = Array.isArray(raw.images)
     ? raw.images.filter((img) => img && typeof img.url === 'string' && img.url.trim() !== '')
     : [];
 
-  const primaryImage = images.find((img) => img.isPrimary)?.url || images[0]?.url || null;
+  // If backend returns dead temporary sandbox Cloudinary URLs (404) or empty images, substitute verified local assets
+  const hasDeadCloudinarySandbox = images.some((img) =>
+    typeof img.url === 'string' &&
+    (img.url.includes('cloudinary-tools-uploads') || img.url.includes('dtz0urit6'))
+  );
+
+  if (images.length === 0 || hasDeadCloudinarySandbox) {
+    images = VERIFIED_LOCAL_PRODUCT_IMAGES;
+  }
+
+  const primaryImage =
+    images.find((img) => img.isPrimary)?.url ||
+    images[0]?.url ||
+    VERIFIED_LOCAL_PRODUCT_IMAGES[0].url;
 
   const specifications =
     raw.specifications && typeof raw.specifications === 'object'

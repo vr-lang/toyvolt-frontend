@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
+const DEFAULT_FALLBACK_IMAGE = '/images/products/spray-monster-hero.jpg';
 
 /**
- * Renders product images from backend URLs with an intentional Toyvolt RC car SVG fallback
- * if an external image fails to load or is missing.
+ * Renders product images from backend or local URLs with an automatic fallback
+ * to the verified local Toyvolt RC car asset if an external image fails or 404s.
  */
 export const ProductImageWithFallback = ({
   src,
@@ -11,15 +13,33 @@ export const ProductImageWithFallback = ({
   fetchPriority,
   loading,
   width = 800,
-  height = 600
+  height = 600,
+  fallbackSrc = DEFAULT_FALLBACK_IMAGE
 }) => {
-  const [hasError, setHasError] = useState(false);
+  const [currentSrc, setCurrentSrc] = useState(src || fallbackSrc);
+  const [hasTriedFallback, setHasTriedFallback] = useState(false);
+  const [hasFatalError, setHasFatalError] = useState(false);
 
-  if (!src || hasError) {
+  useEffect(() => {
+    setCurrentSrc(src || fallbackSrc);
+    setHasTriedFallback(false);
+    setHasFatalError(false);
+  }, [src, fallbackSrc]);
+
+  const handleError = () => {
+    if (!hasTriedFallback && fallbackSrc && currentSrc !== fallbackSrc) {
+      setHasTriedFallback(true);
+      setCurrentSrc(fallbackSrc);
+    } else {
+      setHasFatalError(true);
+    }
+  };
+
+  if (!currentSrc || hasFatalError) {
     return (
       <div
         role="img"
-        aria-label={alt || 'Toyvolt Apex-1 High-Speed RC Drift Car'}
+        aria-label={alt || 'Toyvolt High-Speed RC Car'}
         className="w-full h-full bg-[#1769FF] flex flex-col items-center justify-center p-6 text-center relative overflow-hidden select-none"
       >
         <div
@@ -31,10 +51,10 @@ export const ProductImageWithFallback = ({
             directions_car
           </span>
           <span className="font-headline-sm text-headline-sm uppercase font-bold text-[#171717] block">
-            TOYVOLT APEX-1
+            TOYVOLT RC CAR
           </span>
           <span className="font-label-sm text-label-sm uppercase text-[#434654] block">
-            1:16 SCALE 4WD RC DRIFT CAR
+            HIGH-SPEED 4WD
           </span>
         </div>
       </div>
@@ -42,12 +62,12 @@ export const ProductImageWithFallback = ({
   }
 
   const imgProps = {
-    src,
-    alt: alt || 'Toyvolt Apex-1 RC Drift Car',
+    src: currentSrc,
+    alt: alt || 'Toyvolt RC Car',
     className,
     width,
     height,
-    onError: () => setHasError(true)
+    onError: handleError
   };
 
   if (fetchPriority) {

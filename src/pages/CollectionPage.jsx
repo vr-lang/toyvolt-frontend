@@ -240,7 +240,7 @@ export const CollectionPage = ({ backendServices }) => {
     updateSavedPincode(cleaned);
     setPinStatus({
       success: true,
-      message: `PIN ${cleaned} pre-cleared for express logistics! Free shipping on orders ≥ ₹${BRAND_CONFIG.shipping.freeShippingThresholdRupees}.`
+      message: `PIN ${cleaned} pre-cleared for express logistics! 100% Free shipping applied automatically.`
     });
   };
 
@@ -756,7 +756,7 @@ export const CollectionPage = ({ backendServices }) => {
               local_shipping
             </span>
             <span className="font-title text-[11px] uppercase font-bold text-[#171717] tracking-wider">
-              FREE EXPRESS SHIPPING ACROSS INDIA ON ORDERS OVER ₹{BRAND_CONFIG.shipping.freeShippingThresholdRupees} • CODE: WELCOME100
+              FREE EXPRESS SHIPPING ACROSS INDIA ON ALL ORDERS • CODE: WELCOME100
             </span>
           </div>
 

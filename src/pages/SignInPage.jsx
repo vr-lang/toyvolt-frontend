@@ -65,8 +65,8 @@ export const SignInPage = ({ product }) => {
     {
       icon: 'local_shipping',
       iconBg: 'bg-[#FF7626] text-white',
-      title: `Free Shipping Over ₹${BRAND_CONFIG.shipping.freeShippingThresholdRupees}`,
-      desc: `₹0 shipping on orders ≥ ₹${BRAND_CONFIG.shipping.freeShippingThresholdRupees} (₹${BRAND_CONFIG.shipping.standardShippingFeeRupees} standard below ₹${BRAND_CONFIG.shipping.freeShippingThresholdRupees}).`
+      title: '100% Free Shipping Nationwide',
+      desc: 'Enjoy ₹0 delivery charges on all Toyvolt orders across India.'
     },
     {
       icon: 'package_2',

@@ -27,9 +27,7 @@ export const DeliverySection = ({ backendServices }) => {
     updateSavedPincode(cleaned);
     setPinFeedback({
       type: 'info',
-      text: isShiprocketConfigured
-        ? `PIN code ${cleaned} saved for your checkout shipping address. Free shipping applies on orders over ₹${BRAND_CONFIG.shipping.freeShippingThresholdRupees}.`
-        : `PIN code ${cleaned} saved for checkout pre-fill. Live courier ETA lookup is pending Shiprocket credential activation on the server. Shipping fee is ₹0 on orders ≥ ₹${BRAND_CONFIG.shipping.freeShippingThresholdRupees} (₹${BRAND_CONFIG.shipping.standardShippingFeeRupees} below ₹${BRAND_CONFIG.shipping.freeShippingThresholdRupees}).`
+      text: `PIN code ${cleaned} saved for checkout. 100% Free Shipping is applied automatically on all orders nationwide!`
     });
   };
 
@@ -53,8 +51,7 @@ export const DeliverySection = ({ backendServices }) => {
               Save Your Delivery PIN Code &amp; View Shipping Rules
             </h2>
             <p className="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
-              Enter your 6-digit Indian PIN code to pre-fill checkout. Orders ≥ ₹
-              {BRAND_CONFIG.shipping.freeShippingThresholdRupees} qualify for ₹0 shipping fee.
+              Enter your 6-digit Indian PIN code to pre-fill checkout. 100% Free Shipping applies across all orders!
             </p>
           </div>
         </div>

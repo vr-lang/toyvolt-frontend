@@ -12,7 +12,7 @@ export const MarqueeTicker = ({ product }) => {
     `TOP SPEED: ${topSpeed}`,
     `${drive} • ${freq}`,
     `BATTERY: ${battery}`,
-    `FREE SHIPPING ON ORDERS OVER ₹${BRAND_CONFIG.shipping.freeShippingThresholdRupees}`,
+    `FREE EXPRESS SHIPPING ON ALL ORDERS ACROSS INDIA`,
     `USE CODE: WELCOME100 FOR ₹100 OFF`
   ];
 

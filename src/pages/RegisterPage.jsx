@@ -118,7 +118,7 @@ export const RegisterPage = () => {
     { icon: 'mark_email_read', label: '6-Digit Email OTP Security' },
     {
       icon: 'local_shipping',
-      label: `₹0 Shipping Over ₹${BRAND_CONFIG.shipping.freeShippingThresholdRupees}`
+      label: '100% Free Shipping Across India'
     },
     { icon: 'verified_user', label: 'Server-Validated Billing' }
   ];

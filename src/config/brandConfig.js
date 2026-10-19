@@ -23,12 +23,12 @@ export const BRAND_CONFIG = {
     divider: '#DDD3C3'
   },
 
-  // Verified Backend Rules (from toyvolt-backend/src/services/orderService.js & seedData.json)
+  // Verified Operational Rules: ₹0 Free Shipping Nationwide
   shipping: {
-    freeShippingThresholdRupees: 999,
-    freeShippingThresholdPaise: 99900,
-    standardShippingFeeRupees: 99,
-    standardShippingFeePaise: 9900,
+    freeShippingThresholdRupees: 0,
+    freeShippingThresholdPaise: 0,
+    standardShippingFeeRupees: 0,
+    standardShippingFeePaise: 0,
     dispatchTimeline: '1–2 business days',
     deliveryTimeline: '3–7 business days across serviceable PIN codes in India',
     carrierNetwork: 'Shiprocket partner courier network (Delhivery, Bluedart, etc.)'

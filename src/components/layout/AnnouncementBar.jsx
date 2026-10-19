@@ -10,7 +10,7 @@ export const AnnouncementBar = ({ onSelectCoupon }) => {
             local_shipping
           </span>
           <span className="font-label-sm text-label-sm tracking-wider uppercase font-bold truncate">
-            Free Shipping on Orders Over ₹{BRAND_CONFIG.shipping.freeShippingThresholdRupees} • Welcome Code:{' '}
+            Free Express Shipping Across India • Welcome Code:{' '}
             <button
               type="button"
               onClick={() => onSelectCoupon?.('WELCOME100')}

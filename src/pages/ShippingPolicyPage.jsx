@@ -124,16 +124,11 @@ export const ShippingPolicyPage = () => {
               </thead>
               <tbody className="divide-y divide-on-surface/20">
                 <tr className="bg-[#eef3ff]">
-                  <td className="p-3 font-bold border-r border-on-surface">₹{BRAND_CONFIG.shipping.freeShippingThresholdRupees} and Above</td>
+                  <td className="p-3 font-bold border-r border-on-surface">All Orders (Pan-India)</td>
                   <td className="p-3 font-mono font-bold text-primary border-r border-on-surface">FREE (₹0)</td>
                   <td className="p-3">
-                    <strong>100% Free Shipping</strong> applied automatically. For example, purchasing our flagship RC Car at ₹1,799 qualifies for free delivery nationwide!
+                    <strong>100% Free Shipping</strong> applied automatically at checkout across all PIN codes in India.
                   </td>
-                </tr>
-                <tr>
-                  <td className="p-3 font-bold border-r border-on-surface">Below ₹{BRAND_CONFIG.shipping.freeShippingThresholdRupees}</td>
-                  <td className="p-3 font-mono font-bold text-on-surface border-r border-on-surface">₹{BRAND_CONFIG.shipping.standardShippingFeeRupees} Flat Fee</td>
-                  <td className="p-3">Standard logistics handling fee covering packaging and ground transit.</td>
                 </tr>
               </tbody>
             </table>

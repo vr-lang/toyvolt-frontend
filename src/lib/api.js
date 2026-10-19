@@ -439,4 +439,15 @@ export const reviewApi = {
   }
 };
 
+export const shippingApi = {
+  async getShippingSettings() {
+    try {
+      const res = await api.get('/shipments/settings');
+      return res.data?.data?.settings || null;
+    } catch {
+      return null;
+    }
+  }
+};
+
 export default api;

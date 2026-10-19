@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
-import { cartApi, couponApi, getErrorMessage } from '../lib/api';
+import { cartApi, couponApi, shippingApi, getErrorMessage } from '../lib/api';
 import { useAuth } from './AuthContext';
 import { BRAND_CONFIG } from '../config/brandConfig';
 
@@ -297,6 +297,29 @@ export const CartProvider = ({ children }) => {
     [items]
   );
 
+  const [shippingConfig, setShippingConfig] = useState({
+    isShippingFeeEnabled: false,
+    standardShippingFeePaise: BRAND_CONFIG.shipping.standardShippingFeePaise || 0,
+    freeShippingThresholdPaise: BRAND_CONFIG.shipping.freeShippingThresholdPaise || 0
+  });
+
+  // Fetch active shipping configuration dynamically from server
+  useEffect(() => {
+    let isMounted = true;
+    shippingApi.getShippingSettings().then((settings) => {
+      if (isMounted && settings) {
+        setShippingConfig({
+          isShippingFeeEnabled: Boolean(settings.isShippingFeeEnabled),
+          standardShippingFeePaise: settings.standardShippingFeePaise || 0,
+          freeShippingThresholdPaise: settings.freeShippingThresholdPaise || 0
+        });
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   const subtotalPaise = useMemo(
     () =>
       items.reduce(
@@ -310,10 +333,16 @@ export const CartProvider = ({ children }) => {
 
   const shippingFeePaise = useMemo(() => {
     if (subtotalPaise === 0) return 0;
-    return subtotalPaise >= BRAND_CONFIG.shipping.freeShippingThresholdPaise
-      ? 0
-      : BRAND_CONFIG.shipping.standardShippingFeePaise;
-  }, [subtotalPaise]);
+    // If shipping fee is disabled or standard fee is 0, 100% Free Shipping applies
+    if (!shippingConfig.isShippingFeeEnabled || shippingConfig.standardShippingFeePaise <= 0) {
+      return 0;
+    }
+    // If a free shipping threshold is configured and reached
+    if (shippingConfig.freeShippingThresholdPaise > 0 && subtotalPaise >= shippingConfig.freeShippingThresholdPaise) {
+      return 0;
+    }
+    return shippingConfig.standardShippingFeePaise;
+  }, [subtotalPaise, shippingConfig]);
 
   const shippingFeeRupees = useMemo(
     () => Math.round(shippingFeePaise / 100),
@@ -426,6 +455,7 @@ export const CartProvider = ({ children }) => {
         subtotalRupees,
         shippingFeePaise,
         shippingFeeRupees,
+        shippingConfig,
         discountPaise,
         discountRupees,
         finalTotalPaise,

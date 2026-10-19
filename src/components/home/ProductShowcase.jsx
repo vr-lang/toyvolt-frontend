@@ -176,9 +176,7 @@ export const ProductShowcase = ({ product }) => {
                   </div>
 
                   <span className="font-label-sm text-label-sm uppercase bg-tertiary-fixed text-on-tertiary-fixed px-2.5 py-1 border border-on-surface font-bold">
-                    {product.sellingPriceInRupees >= BRAND_CONFIG.shipping.freeShippingThresholdRupees
-                      ? 'QUALIFIES FOR FREE SHIPPING'
-                      : `STANDARD SHIPPING ₹${BRAND_CONFIG.shipping.standardShippingFeeRupees}`}
+                    QUALIFIES FOR 100% FREE SHIPPING
                   </span>
                 </div>
 

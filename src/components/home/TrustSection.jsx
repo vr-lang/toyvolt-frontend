@@ -11,8 +11,8 @@ export const TrustSection = () => {
     {
       icon: 'local_shipping',
       iconBg: 'bg-primary-fixed text-on-primary-fixed',
-      title: `Free Shipping Over ₹${BRAND_CONFIG.shipping.freeShippingThresholdRupees}`,
-      description: `Orders ≥ ₹${BRAND_CONFIG.shipping.freeShippingThresholdRupees} automatically receive ₹0 shipping at checkout.`
+      title: '100% Free Shipping Across India',
+      description: 'Enjoy ₹0 delivery charges on all Toyvolt orders nationwide.'
     },
     {
       icon: 'inventory',

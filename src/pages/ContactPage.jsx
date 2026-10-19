@@ -156,7 +156,7 @@ export const ContactPage = ({ product }) => {
     {
       question: 'How can I check delivery availability and shipping fees for my area?',
       answer:
-        `Toyvolt provides instant shipping calculations across India. Orders of ₹${BRAND_CONFIG.shipping.freeShippingThresholdRupees} and above qualify for free standard shipping. Orders below ₹${BRAND_CONFIG.shipping.freeShippingThresholdRupees} have a flat ₹${BRAND_CONFIG.shipping.standardShippingFeeRupees} shipping fee. You can also test your 6-digit delivery PIN code directly on our homepage.`
+        `Toyvolt provides 100% Free Shipping on all orders across India with ₹0 delivery charges! You can also test your 6-digit delivery PIN code directly on our homepage or checkout page to pre-clear express logistics.`
     }
   ];
 

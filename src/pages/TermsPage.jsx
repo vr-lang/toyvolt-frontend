@@ -182,8 +182,7 @@ export const TermsPage = () => {
             <strong>Shipping Fee Calculation:</strong>
           </p>
           <ul className="list-disc pl-6 space-y-1">
-            <li>Orders with a subtotal of <strong>₹{BRAND_CONFIG.shipping.freeShippingThresholdRupees} or more</strong>: <strong>FREE SHIPPING (₹0)</strong>.</li>
-            <li>Orders below <strong>₹{BRAND_CONFIG.shipping.freeShippingThresholdRupees}</strong>: Flat standard shipping fee of <strong>₹{BRAND_CONFIG.shipping.standardShippingFeeRupees}</strong>.</li>
+            <li>All storefront orders qualify for <strong>100% FREE SHIPPING (₹0)</strong> across India.</li>
           </ul>
           <p>
             <strong>Dispatch &amp; Delivery Timelines:</strong> Verified orders are typically dispatched within <strong>{BRAND_CONFIG.shipping.dispatchTimeline}</strong>. Estimated delivery takes <strong>{BRAND_CONFIG.shipping.deliveryTimeline}</strong> depending on your destination city and regional courier logistics. Full details are set forth in our <Link to="/shipping-policy" className="text-primary underline font-bold">Shipping and Delivery Policy</Link>.

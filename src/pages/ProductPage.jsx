@@ -117,7 +117,7 @@ export const ProductPage = ({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Gallery Column */}
             <div className="lg:col-span-6 space-y-4">
-              <div className="w-full aspect-[4/3] bg-surface-container-lowest border-2 border-on-surface shadow-[4px_4px_0px_#191919] overflow-hidden relative">
+              <div className="w-full aspect-[4/3] bg-surface-container-lowest border-2 border-on-surface shadow-[4px_4px_0px_#191919] overflow-hidden relative flex items-center justify-center p-4 sm:p-6">
                 {product.discountPercentage > 0 && (
                   <span className="absolute top-3 left-3 bg-secondary-container text-on-secondary px-3 py-1 font-label-sm text-label-sm font-bold border border-on-surface z-10 shadow-[2px_2px_0px_#191919]">
                     -{product.discountPercentage}% OFF
@@ -129,21 +129,21 @@ export const ProductPage = ({
                   fetchPriority="high"
                   width={900}
                   height={675}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full max-h-[420px] sm:max-h-[480px] object-contain transition-transform duration-200"
                 />
               </div>
 
               {images.length > 1 && (
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2.5 sm:gap-3">
                   {images.map((img, idx) => (
                     <button
                       key={img.publicId || idx}
                       type="button"
                       onClick={() => setSelectedImageIdx(idx)}
-                      className={`h-24 border-2 border-on-surface overflow-hidden transition-all ${
+                      className={`h-20 sm:h-24 bg-surface-container-lowest border-2 border-on-surface overflow-hidden transition-all flex items-center justify-center p-1.5 ${
                         selectedImageIdx === idx
-                          ? 'shadow-[4px_4px_0px_#1769FF] ring-2 ring-primary'
-                          : 'shadow-[2px_2px_0px_#191919] opacity-75 hover:opacity-100'
+                          ? 'shadow-[4px_4px_0px_#1769FF] ring-2 ring-primary -translate-y-0.5'
+                          : 'shadow-[2px_2px_0px_#191919] opacity-75 hover:opacity-100 hover:shadow-[3px_3px_0px_#191919]'
                       }`}
                     >
                       <ProductImageWithFallback
@@ -151,7 +151,7 @@ export const ProductPage = ({
                         alt={`${product.name} angle ${idx + 1}`}
                         width={240}
                         height={180}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain"
                       />
                     </button>
                   ))}

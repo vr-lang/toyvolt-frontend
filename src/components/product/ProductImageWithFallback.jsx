@@ -7,7 +7,7 @@ import React, { useState } from 'react';
 export const ProductImageWithFallback = ({
   src,
   alt,
-  className = 'w-full h-full object-cover',
+  className = 'w-full h-full object-contain',
   fetchPriority,
   loading,
   width = 800,

@@ -75,7 +75,7 @@ export const ProductShowcase = ({ product }) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left: Product Image Gallery (lg:col-span-6) */}
           <ScrollReveal delay={80} className="lg:col-span-6 flex flex-col gap-4">
-            <div className="w-full aspect-[4/3] bg-surface-container-lowest border-2 border-on-surface shadow-[4px_4px_0px_#191919] overflow-hidden relative group">
+            <div className="w-full aspect-[4/3] bg-surface-container-lowest border-2 border-on-surface shadow-[4px_4px_0px_#191919] overflow-hidden relative group flex items-center justify-center p-3 sm:p-5">
               {product.discountPercentage > 0 && (
                 <span className="absolute top-3 left-3 bg-secondary-container text-on-secondary px-3 py-1 font-label-sm text-label-sm font-bold border border-on-surface z-10 shadow-[2px_2px_0px_#191919] uppercase">
                   SAVE ₹{product.savingsRupees.toLocaleString('en-IN')} (-{product.discountPercentage}%)
@@ -92,23 +92,23 @@ export const ProductShowcase = ({ product }) => {
                 loading="lazy"
                 width={900}
                 height={675}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-full max-h-[380px] sm:max-h-[440px] object-contain group-hover:scale-105 transition-transform duration-300"
               />
             </div>
 
             {/* Thumbnail Strip if multiple images exist */}
             {images.length > 1 && (
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2 sm:gap-3">
                 {images.map((img, idx) => (
                   <button
                     key={img.publicId || idx}
                     type="button"
                     onClick={() => setSelectedImageIdx(idx)}
                     aria-label={`Select product image ${idx + 1}`}
-                    className={`h-20 sm:h-24 border-2 border-on-surface overflow-hidden transition-all relative ${
+                    className={`h-16 sm:h-20 bg-surface-container-lowest border-2 border-on-surface overflow-hidden transition-all relative flex items-center justify-center p-1.5 ${
                       selectedImageIdx === idx
                         ? 'shadow-[4px_4px_0px_#1769FF] ring-2 ring-primary -translate-y-0.5'
-                        : 'shadow-[2px_2px_0px_#191919] opacity-80 hover:opacity-100'
+                        : 'shadow-[2px_2px_0px_#191919] opacity-80 hover:opacity-100 hover:shadow-[3px_3px_0px_#191919]'
                     }`}
                   >
                     <ProductImageWithFallback
@@ -117,10 +117,10 @@ export const ProductShowcase = ({ product }) => {
                       loading="lazy"
                       width={240}
                       height={160}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                     />
-                    <span className="absolute bottom-1 left-1 bg-on-surface text-surface font-label-sm text-[9px] px-1.5 py-0.2 uppercase">
-                      {idx === 0 ? 'PRIMARY' : `ANGLE 0${idx + 1}`}
+                    <span className="absolute bottom-0.5 left-0.5 bg-on-surface text-surface font-label-sm text-[8px] sm:text-[9px] px-1 py-0.2 uppercase leading-none">
+                      {idx === 0 ? 'PRIMARY' : `0${idx + 1}`}
                     </span>
                   </button>
                 ))}

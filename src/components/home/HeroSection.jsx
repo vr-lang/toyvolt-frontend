@@ -53,7 +53,7 @@ export const HeroSection = ({ product }) => {
             </div>
 
             {/* Mobile Car Image Container */}
-            <div className="w-full aspect-[16/10] bg-surface-container-low border-2 border-on-surface overflow-hidden relative flex items-center justify-center p-2 rounded">
+            <div className="w-full aspect-[16/10] bg-surface-container-low border-2 border-on-surface overflow-hidden relative flex items-center justify-center p-3 sm:p-4 rounded">
               <ProductImageWithFallback
                 src={activeImageUrl}
                 alt={product.name}
@@ -219,14 +219,14 @@ export const HeroSection = ({ product }) => {
               </Link>
             </div>
 
-            <div className="w-full h-56 sm:h-60 bg-surface-container-low border-2 border-on-surface mb-3 overflow-hidden relative">
+            <div className="w-full aspect-[16/10] min-h-[220px] max-h-[300px] bg-surface-container-low border-2 border-on-surface mb-3 overflow-hidden relative flex items-center justify-center p-3 sm:p-4">
               <ProductImageWithFallback
                 src={activeImageUrl}
                 alt={product.name}
                 fetchPriority="high"
                 width={800}
                 height={500}
-                className="w-full h-full object-contain p-2 group-hover:scale-[1.02] transition-transform duration-200"
+                className="w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-200"
               />
               {images.length > 1 && (
                 <div className="absolute bottom-2.5 right-2.5 flex items-center gap-1.5 z-10">
@@ -307,13 +307,13 @@ export const HeroSection = ({ product }) => {
             }}
             className="text-left bg-[#FFF9F0] border-2 border-on-surface shadow-[4px_4px_0px_#191919] p-3 flex flex-col justify-between hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_#191919] transition-all duration-150 group hero-enter-details"
           >
-            <div className="w-full h-32 bg-surface-container-low border border-on-surface mb-2 overflow-hidden">
+            <div className="w-full h-32 bg-surface-container-low border border-on-surface mb-2 overflow-hidden flex items-center justify-center p-2">
               <ProductImageWithFallback
                 src={secondaryImageUrl}
                 alt={`${product.name} — Action Drift View`}
                 width={400}
                 height={260}
-                className="w-full h-full object-contain p-1 group-hover:scale-[1.02] transition-transform duration-200"
+                className="w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-200"
               />
             </div>
             <span className="font-label-sm text-label-sm uppercase bg-tertiary-fixed text-on-tertiary-fixed px-1.5 py-0.5 border border-on-surface w-fit mb-1 font-bold">

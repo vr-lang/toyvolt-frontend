@@ -84,11 +84,11 @@ export const AboutPage = ({ product }) => {
                 </div>
 
                 {/* Primary Visual */}
-                <div className="relative aspect-[4/3] bg-surface-container-low border-2 border-on-surface rounded-lg overflow-hidden mb-4">
+                <div className="relative aspect-[4/3] bg-surface-container-low border-2 border-on-surface rounded-lg overflow-hidden mb-4 flex items-center justify-center p-3 sm:p-4">
                   <ProductImageWithFallback
                     src={product?.primaryImage || product?.images?.[0]?.url}
                     alt={product?.name || 'Toyvolt Flagship RC Car'}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   />
                   <div className="absolute top-3 left-3 bg-[#FFF3DF] text-on-surface border border-on-surface px-2.5 py-1 font-label-sm text-[11px] font-bold shadow-[2px_2px_0px_#171717]">
                     ENGINEERED FOR FUN • 100% PURE PLAY
@@ -309,11 +309,11 @@ export const AboutPage = ({ product }) => {
 
               {/* Product Visual */}
               <div className="lg:col-span-6">
-                <div className="relative aspect-[4/3] bg-[#FFF3DF] border-2 border-on-surface rounded-xl overflow-hidden shadow-[6px_6px_0px_#171717]">
+                <div className="relative aspect-[4/3] bg-[#FFF3DF] border-2 border-on-surface rounded-xl overflow-hidden shadow-[6px_6px_0px_#171717] flex items-center justify-center p-3 sm:p-5">
                   <ProductImageWithFallback
                     src={product?.primaryImage || product?.images?.[0]?.url}
                     alt={product?.name || 'Toyvolt Apex-1 Remote Control Car'}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   />
                   <div className="absolute bottom-3 right-3 bg-surface-container-lowest text-on-surface border border-on-surface px-3 py-1.5 font-label-sm text-[11px] font-bold shadow-[2px_2px_0px_#171717]">
                     ₹{product ? product.sellingPriceInRupees.toLocaleString('en-IN') : '1,799'} • IN STOCK

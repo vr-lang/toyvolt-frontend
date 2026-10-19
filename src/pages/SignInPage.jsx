@@ -194,14 +194,14 @@ export const SignInPage = ({ product }) => {
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                   <Link
                     to={`/product/${featuredSlug}`}
-                    className="w-full sm:w-24 h-32 sm:h-24 bg-[#F0E8DA] border-2 border-[#171717] shrink-0 overflow-hidden block"
+                    className="w-full sm:w-24 h-32 sm:h-24 bg-[#F0E8DA] border-2 border-[#171717] shrink-0 overflow-hidden block flex items-center justify-center p-1.5"
                   >
                     <ProductImageWithFallback
                       src={featuredImage}
                       alt={featuredName}
                       width={200}
                       height={200}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform"
+                      className="w-full h-full object-contain hover:scale-105 transition-transform"
                     />
                   </Link>
 

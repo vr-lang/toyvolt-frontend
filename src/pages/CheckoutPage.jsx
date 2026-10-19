@@ -674,13 +674,13 @@ export const CheckoutPage = ({ backendServices, onOrderPlaced }) => {
                   key={product.id}
                   className="bg-surface-container-lowest border-2 border-on-surface p-3 flex items-center gap-3"
                 >
-                  <div className="w-16 h-16 border border-on-surface shrink-0 overflow-hidden">
+                  <div className="w-16 h-16 border border-on-surface bg-surface-container-low shrink-0 overflow-hidden flex items-center justify-center p-1">
                     <ProductImageWithFallback
                       src={product.primaryImage || product.images?.[0]?.url}
                       alt={product.name}
                       width={120}
                       height={120}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                     />
                   </div>
                   <div className="flex-1 min-w-0">

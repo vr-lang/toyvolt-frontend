@@ -432,13 +432,13 @@ export const Navbar = ({ product, onQuickJump }) => {
                     onClick={() => setSearchOpen(false)}
                     className="flex items-center gap-3 p-2.5 bg-surface-container-lowest border-2 border-on-surface shadow-[3px_3px_0px_#191919] hover:bg-primary-fixed/40 transition-colors"
                   >
-                    <div className="w-14 h-14 border border-on-surface bg-surface-container-low shrink-0 overflow-hidden">
+                    <div className="w-14 h-14 border border-on-surface bg-surface-container-low shrink-0 overflow-hidden flex items-center justify-center p-1">
                       <ProductImageWithFallback
                         src={product.primaryImage || product.images?.[0]?.url}
                         alt={product.name}
                         width={112}
                         height={112}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain"
                       />
                     </div>
                     <div className="flex-1 min-w-0">

@@ -132,13 +132,13 @@ export const CartDrawer = () => {
                   key={product.id}
                   className="bg-surface-container-lowest border-2 border-on-surface shadow-[4px_4px_0px_#191919] p-4 flex gap-3.5"
                 >
-                  <div className="w-20 h-20 border border-on-surface bg-surface-container-low shrink-0 overflow-hidden">
+                  <div className="w-20 h-20 border border-on-surface bg-surface-container-low shrink-0 overflow-hidden flex items-center justify-center p-1.5">
                     <ProductImageWithFallback
                       src={product.primaryImage || product.images?.[0]?.url}
                       alt={product.name}
                       width={160}
                       height={160}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                     />
                   </div>
 

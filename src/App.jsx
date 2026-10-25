@@ -13,6 +13,7 @@ import { CollectionPage } from './pages/CollectionPage';
 import { ProductPage } from './pages/ProductPage';
 import { CheckoutPage } from './pages/CheckoutPage';
 import { OrdersPage } from './pages/OrdersPage';
+import { OrderDetailsPage } from './pages/OrderDetailsPage';
 import { AdminPage } from './pages/AdminPage';
 import { SignInPage } from './pages/SignInPage';
 import { RegisterPage } from './pages/RegisterPage';
@@ -212,6 +213,22 @@ export const App = () => {
             path="/orders"
             element={
               <OrdersPage
+                onOrderCancelled={() => fetchStorefrontData({ forceRefresh: true })}
+              />
+            }
+          />
+          <Route
+            path="/orders/:id"
+            element={
+              <OrderDetailsPage
+                onOrderCancelled={() => fetchStorefrontData({ forceRefresh: true })}
+              />
+            }
+          />
+          <Route
+            path="/order/:id"
+            element={
+              <OrderDetailsPage
                 onOrderCancelled={() => fetchStorefrontData({ forceRefresh: true })}
               />
             }

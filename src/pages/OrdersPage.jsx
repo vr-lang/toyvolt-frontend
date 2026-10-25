@@ -5,6 +5,38 @@ import { orderApi, getErrorMessage } from '../lib/api';
 import { AccountSidebar } from '../components/account/AccountSidebar';
 import { LoadingState } from '../components/common/LoadingState';
 
+const getStatusBadgeProps = (order) => {
+  const status = (order.orderStatus || '').toLowerCase();
+  const shipmentStatus = (order.shipmentId?.status || '').toLowerCase();
+
+  if (status === 'delivered' || shipmentStatus === 'delivered') {
+    return {
+      label: 'DELIVERED',
+      bg: 'bg-[#DCFCE7]',
+      text: 'text-[#14532D]'
+    };
+  }
+  if (status === 'shipped' || shipmentStatus === 'in_transit' || shipmentStatus === 'out_for_delivery') {
+    return {
+      label: shipmentStatus === 'out_for_delivery' ? 'OUT FOR DELIVERY' : 'IN TRANSIT',
+      bg: 'bg-[#E3E7FF]',
+      text: 'text-[#1769FF]'
+    };
+  }
+  if (status === 'cancelled' || shipmentStatus === 'cancelled') {
+    return {
+      label: 'CANCELLED',
+      bg: 'bg-[#FEE2E2]',
+      text: 'text-[#991B1B]'
+    };
+  }
+  return {
+    label: order.orderStatus ? order.orderStatus.toUpperCase() : 'PROCESSING',
+    bg: 'bg-[#FEF3C7]',
+    text: 'text-[#92400E]'
+  };
+};
+
 export const OrdersPage = ({ onOrderCancelled }) => {
   const { isAuthenticated, openAuthModal } = useAuth();
   const [orders, setOrders] = useState([]);
@@ -179,9 +211,16 @@ export const OrdersPage = ({ onOrderCancelled }) => {
                         </div>
 
                         <div className="flex flex-wrap items-center gap-2">
-                          <span className="px-2.5 py-1 bg-[#E3E7FF] text-[#1769FF] border border-[#171717] font-label-sm text-[10px] uppercase font-bold">
-                            STATUS: {order.orderStatus}
-                          </span>
+                          {(() => {
+                            const badge = getStatusBadgeProps(order);
+                            return (
+                              <span
+                                className={`px-2.5 py-1 ${badge.bg} ${badge.text} border border-[#171717] font-label-sm text-[10px] uppercase font-bold`}
+                              >
+                                STATUS: {badge.label}
+                              </span>
+                            );
+                          })()}
                           <span className="px-2.5 py-1 bg-[#FEF3C7] text-[#92400E] border border-[#171717] font-label-sm text-[10px] uppercase font-bold">
                             {order.paymentStatus === 'paid' ? 'PAID' : 'PENDING'} ({order.paymentMethod?.toUpperCase()})
                           </span>

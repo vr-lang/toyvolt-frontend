@@ -382,8 +382,13 @@ export const orderApi = {
     return res.data?.data?.order;
   },
 
-  async getOrderTracking(orderId) {
-    const res = await api.get(`/orders/${orderId}/tracking`);
+  async getOrderTracking(orderId, refresh = false) {
+    const res = await api.get(`/orders/${orderId}/tracking${refresh ? '?refresh=true' : ''}`);
+    return res.data?.data;
+  },
+
+  async refreshOrderTracking(orderId) {
+    const res = await api.post(`/orders/${orderId}/tracking/refresh`);
     return res.data?.data;
   },
 

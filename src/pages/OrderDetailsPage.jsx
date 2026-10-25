@@ -24,28 +24,40 @@ export const OrderDetailsPage = ({ onOrderCancelled }) => {
   const [supportModalOpen, setSupportModalOpen] = useState(false);
 
   // Load Order & Tracking
-  const loadOrderDetails = useCallback(async () => {
+  const loadOrderDetails = useCallback(async (refresh = false) => {
     if (!routeOrderId) return;
-    setLoading(true);
+    if (!refresh) setLoading(true);
     setError('');
 
     try {
+      if (refresh) {
+        setTrackingLoading(true);
+        try {
+          const refreshedTracking = await orderApi.refreshOrderTracking(routeOrderId);
+          if (refreshedTracking) {
+            setTrackingData(refreshedTracking);
+          }
+        } catch (refreshErr) {
+          console.warn('Tracking refresh call failed:', refreshErr);
+        }
+      }
+
       const orderRes = await orderApi.getOrderById(routeOrderId);
       if (!orderRes) {
         throw new Error('Order not found.');
       }
       setOrder(orderRes);
 
-      // Fetch tracking data asynchronously
-      setTrackingLoading(true);
-      try {
-        const trackingRes = await orderApi.getOrderTracking(routeOrderId);
-        setTrackingData(trackingRes);
-      } catch (trackErr) {
-        // Non-blocking: order details still render
-        console.warn('Tracking fetch failed:', trackErr);
-      } finally {
-        setTrackingLoading(false);
+      // Fetch tracking data asynchronously if not already fetched via refresh
+      if (!refresh) {
+        setTrackingLoading(true);
+        try {
+          const trackingRes = await orderApi.getOrderTracking(routeOrderId);
+          setTrackingData(trackingRes);
+        } catch (trackErr) {
+          // Non-blocking: order details still render
+          console.warn('Tracking fetch failed:', trackErr);
+        }
       }
     } catch (err) {
       setError(
@@ -56,6 +68,7 @@ export const OrderDetailsPage = ({ onOrderCancelled }) => {
       );
     } finally {
       setLoading(false);
+      setTrackingLoading(false);
     }
   }, [routeOrderId]);
 
@@ -389,7 +402,7 @@ export const OrderDetailsPage = ({ onOrderCancelled }) => {
           <div className="flex items-center gap-2">
             <button
               type="button"
-              onClick={loadOrderDetails}
+              onClick={() => loadOrderDetails(true)}
               disabled={trackingLoading}
               className="text-[#171717] hover:text-[#1769FF] flex items-center gap-1 text-[10px]"
             >
